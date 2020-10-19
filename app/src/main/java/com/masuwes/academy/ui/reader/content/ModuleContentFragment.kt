@@ -10,6 +10,7 @@ import com.masuwes.academy.R
 import com.masuwes.academy.data.ContentEntity
 import com.masuwes.academy.data.ModuleEntity
 import com.masuwes.academy.ui.reader.CourseReaderViewModel
+import com.masuwes.academy.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_module_content.*
 
 class ModuleContentFragment : Fragment() {
@@ -33,7 +34,8 @@ class ModuleContentFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         if (activity != null) {
-            val viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireContext())
+            val viewModel = ViewModelProvider(requireActivity(), factory)[CourseReaderViewModel::class.java]
             val module = viewModel.getSelectedModule()
             populateWebView(module)
         }

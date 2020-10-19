@@ -39,11 +39,13 @@ class ModuleListAdapter internal constructor(private val listener: MyAdapterClic
             textTitle.text = module.title
         }
     }
+
+
+    internal interface MyAdapterClickListener {
+        fun onItemClicked(position: Int, moduleId: String)
+    }
 }
 
-internal interface MyAdapterClickListener {
-    fun onItemClicked(position: Int, moduleId: String)
-}
 
 
 

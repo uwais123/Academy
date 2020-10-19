@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.masuwes.academy.R
 import com.masuwes.academy.utils.DataDummy
+import com.masuwes.academy.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_academy.*
 
 class AcademyFragment : Fragment() {
@@ -24,7 +25,8 @@ class AcademyFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[AcademyViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireContext())
+            val viewModel = ViewModelProvider(this, factory)[AcademyViewModel::class.java]
             val course = viewModel.getCourse()
             val academyAdapter = AcademyAdapter()
             academyAdapter.setCourses(course)

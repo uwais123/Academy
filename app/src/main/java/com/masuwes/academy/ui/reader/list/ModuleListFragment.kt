@@ -15,10 +15,11 @@ import com.masuwes.academy.data.ModuleEntity
 import com.masuwes.academy.ui.reader.CourseReaderCallback
 import com.masuwes.academy.ui.reader.CourseReaderViewModel
 import com.masuwes.academy.utils.DataDummy
+import com.masuwes.academy.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_module_list.*
 
 
-class ModuleListFragment : Fragment(), MyAdapterClickListener {
+class ModuleListFragment : Fragment(), ModuleListAdapter.MyAdapterClickListener {
 
     companion object {
         val TAG = ModuleListFragment::class.java.simpleName
@@ -39,7 +40,8 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(requireContext())
+        viewModel = ViewModelProvider(requireActivity(), factory)[CourseReaderViewModel::class.java]
         adapter = ModuleListAdapter(this)
         populateRecyclerView(viewModel.getModules())
     }

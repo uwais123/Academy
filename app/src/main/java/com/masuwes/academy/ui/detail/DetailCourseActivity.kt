@@ -12,6 +12,7 @@ import com.masuwes.academy.ui.reader.CourseReaderActivity
 import com.masuwes.academy.R
 import com.masuwes.academy.data.CourseEntity
 import com.masuwes.academy.utils.DataDummy
+import com.masuwes.academy.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.content_detail_course.*
 
 class DetailCourseActivity : AppCompatActivity() {
@@ -27,7 +28,8 @@ class DetailCourseActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val adapter = DetailCourseAdapter()
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailCourseViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[DetailCourseViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) {

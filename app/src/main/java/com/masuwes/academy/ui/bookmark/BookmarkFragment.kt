@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.masuwes.academy.R
 import com.masuwes.academy.data.CourseEntity
 import com.masuwes.academy.utils.DataDummy
+import com.masuwes.academy.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_bookmark.*
 
 class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
@@ -27,7 +28,8 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
         super.onActivityCreated(savedInstanceState)
 
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[BookmarkViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireContext())
+            val viewModel = ViewModelProvider(this, factory)[BookmarkViewModel::class.java]
             val courses = viewModel.getBookmarks()
             val adapter = BookmarkAdapter(this)
             adapter.setCourses(courses)
